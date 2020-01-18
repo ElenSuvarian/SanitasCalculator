@@ -2,7 +2,11 @@ package com.iteriam.SanitasCalculator.service;
 
 import com.iteriam.SanitasCalculator.model.BasicOperandModel;
 import com.iteriam.SanitasCalculator.repository.TracerRepository;
-
+/**
+ * Clase que gestiona la lógica de una suma
+ * @author Elen Suvarian
+ *
+ */
 public class AddCalculatorService implements ICalculatorService{
 
 	@Override
