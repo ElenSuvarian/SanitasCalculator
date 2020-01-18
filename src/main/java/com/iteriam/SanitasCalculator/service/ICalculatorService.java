@@ -7,4 +7,5 @@ import com.iteriam.SanitasCalculator.model.BasicOperandModel;
 public interface ICalculatorService {
 
 	public BasicOperandModel calculate(BasicOperandModel operand);
+	public void trace(BasicOperandModel operand);
 }
