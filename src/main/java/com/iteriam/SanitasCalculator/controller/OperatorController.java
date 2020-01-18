@@ -18,16 +18,26 @@ public class OperatorController {
 	@PostMapping(path= "/substract", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> substract(@RequestBody BasicOperandModel operand) {
 		calculator = new SubstractCalculatorService(); 
-		operand = calculator.calculate(operand);
-				
-		return new ResponseEntity<>(operand.getResult(), HttpStatus.OK);
+		try {
+			operand = calculator.calculate(operand);
+			return new ResponseEntity<>(operand.getResult(), HttpStatus.OK);
+		}catch(Exception ex){	
+			return new ResponseEntity<>(ex.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+		}finally {
+			calculator.trace(operand);
+	}
 	}
 	
 	@PostMapping(path= "/add", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> add(@RequestBody BasicOperandModel operand) {
-		calculator = new AddCalculatorService();
-		operand = calculator.calculate(operand);
-		
-		return new ResponseEntity<>(operand.getResult(), HttpStatus.OK);
+		calculator = new AddCalculatorService(); 
+		try {	
+			operand = calculator.calculate(operand);
+			return new ResponseEntity<>(operand.getResult(), HttpStatus.OK);
+		}catch(Exception ex){
+			return new ResponseEntity<>(ex.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+		}finally {
+			calculator.trace(operand);
+		}
 	}
 }
